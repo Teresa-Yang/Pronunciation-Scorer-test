@@ -12,6 +12,9 @@ except:
     exit(0)
 
 try:
-    web.run(host, port, (debug == 'y' or debug == '1'))
+    # web.run(host, port, (debug == 'y' or debug == '1'))
+    host= "0.0.0.0"
+    port= 5000
+    web.run(host, port)
 except:
     traceback.print_exc()

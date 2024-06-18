@@ -99,5 +99,7 @@ def get_random_audio(audio_id):
     return None
 
 
-def run(host, port, debug):
-    app.run(host, port, debug)
+# def run(host, port, debug):
+    # app.run(host, port, debug)
+def run(host, port):
+    app.run(host, port)
