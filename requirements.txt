@@ -1,0 +1,7 @@
+Flask
+Flask-Session
+librosa
+numpy==1.26.4
+torch
+torchaudio
+gunicorn
