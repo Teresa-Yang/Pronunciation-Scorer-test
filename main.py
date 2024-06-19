@@ -17,7 +17,20 @@ try:
     # web.run(host, port, (debug == 'y' or debug == '1'))
     if __name__ == "__main__":
         print("Starting Main...")
-        web.run(sys.argv[1], int(sys.argv[2]), bool(sys.argv[3]))
+
+        if len(sys.argv) != 4:
+            print(f"Usage: python main.py <host> <port> <debug>")
+            print("<host>: Optional. Default is 0.0.0.0.")
+            print("<port>: Optional. Default is 5000.")
+            print("<debug>: Optional. True or False. Default is False.")
+        else:
+            host = sys.argv[1] or '0.0.0.0'
+            port = int(sys.argv[2]) or 5000
+            debug = eval(sys.argv[3].lower()) or False
+            web.run(host, port, debug)
+            print("Web Server Running...")
+
+        
         print("Exiting Main...")
 
     # web.run(host="0.0.0.0", port=5000, debug=True)
