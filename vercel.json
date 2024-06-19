@@ -2,11 +2,7 @@
     "version": 2,
     "builds": [{
       "src": "FlaskServer/web.py",
-      "use": "@vercel/python",
-      "env": {
-        "FLASK_APP": "FlaskServer/web.py",
-        "FLASK_ENV": "development"
-      }
+      "use": "@vercel/python"
     }],
     "routes": [{
       "src": "/",
