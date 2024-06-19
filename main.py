@@ -15,7 +15,11 @@ try:
     # host= "0.0.0.0"
     # port= 5000
     # web.run(host, port, (debug == 'y' or debug == '1'))
-    
-    web.run(host="0.0.0.0", port=5000, debug=True)
+    if __name__ == "__main__":
+        print("Starting Main...")
+        web.run(sys.argv[1], int(sys.argv[2]), bool(sys.argv[3]))
+        print("Exiting Main...")
+
+    # web.run(host="0.0.0.0", port=5000, debug=True)
 except:
     traceback.print_exc()

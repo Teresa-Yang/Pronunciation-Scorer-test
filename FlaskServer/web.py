@@ -23,6 +23,24 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 sess.init_app(app)
 
+# Dummy response to satisfy website if it does get request to .../favicon.ico
+@app.route('/favicon.ico', methods=['GET'])
+def favicon():
+    return '<h1></h1>'
+
+# # Home page, render the "index.html" template
+# @app.route('/')
+# def home():
+#     return render_template('record.html', name=None)
+
+@app.route('/')
+def index():
+    return redirect('/home', code=302)
+
+# Redirect '/home' to our rendering function
+@app.route('/home')
+def showHomePage():
+    return render_template('record.html', name=None)
 
 # Get score from recently uploaded file
 @app.route('/get_score/<audio_id>/', methods=['GET'])
@@ -38,26 +56,12 @@ def get_score(audio_id):
 
     return str(round(100 * scoring_functions_withVAD.score_pronunciation(proper_series, user_series))) + '%'
 
-
-# Dummy response to satisfy website if it does get request to .../favicon.ico
-@app.route('/favicon.ico', methods=['GET'])
-def favicon():
-    return '<h1></h1>'
-
-
 # Navigation to url will generate random choice and return to HTML
 @app.route('/get_random_line', methods=['GET'])
 def get_random_line():
     path = Path(__file__).parent.__str__() + "/reference_files.txt"
     lines = open(path, encoding="UTF-8").readlines()[1:]
     return random.choice(lines)
-
-
-# Home page, render the "index.html" template
-@app.route('/')
-def home():
-    return render_template('record.html', name=None)
-
 
 # Navigation will create GET request for website and POST request for audio data as mp3 file
 @app.route('/save-record', methods=['GET', 'POST'])
@@ -101,5 +105,6 @@ def get_random_audio(audio_id):
 
 def run(host, port, debug):
     app.run(host, port, debug)
+    print("Web Server Running...")
 # def run(host, port):
 #     app.run(host, port)
